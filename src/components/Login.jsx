@@ -34,7 +34,7 @@ const Login = () => {
         try {
            dispatch({type:"LOGIN_START"});
             try {
-                const res = await axios.post("auth/login", {email:email.current.value , password: password.current.value})
+                const res = await axios.post("https://dev-socia1.herokuapp.com/api/auth/login", {email:email.current.value , password: password.current.value})
                 if(res.status === 200){
                     setOpenAlert(true);
                     setMsg('Login Successfull!');
@@ -62,7 +62,7 @@ const Login = () => {
     const handleRegister = async()=>{
         if(rePassword.current.value === password.current.value){
         try {
-            const res = await axios.post('auth/register', {username:name.current.value, email:email.current.value , password: password.current.value});
+            const res = await axios.post('https://dev-socia1.herokuapp.com/api/auth/register', {username:name.current.value, email:email.current.value , password: password.current.value});
             if(res.status === 200){
                 setOpenAlert(true);
                 setMsg('Registered Successfully');

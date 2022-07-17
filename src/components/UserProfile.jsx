@@ -35,9 +35,9 @@ const UserProfile = () => {
     useEffect(()=>{
         const getProfileData = async () =>{
         setIsLoading(true);
-        const requestOne = await axios.get(`/users/${profileId}`);
-        const requestTwo = await axios.get(`/posts/myposts/${profileId}`);
-        const requestThree = await axios.get(`/users/${user._id}/suggested`);
+        const requestOne = await axios.get(`https://dev-socia1.herokuapp.com/api/users/${profileId}`);
+        const requestTwo = await axios.get(`https://dev-socia1.herokuapp.com/api/posts/myposts/${profileId}`);
+        const requestThree = await axios.get(`https://dev-socia1.herokuapp.com/api/users/${user._id}/suggested`);
 
         await axios.all([requestOne, requestTwo , requestThree]).then(axios.spread((...responses) => {
           const responseOne = responses[0]
@@ -90,7 +90,7 @@ const UserProfile = () => {
     const handleFollow = async () =>{
         try {
             setIsLoadingAction(true);
-            await axios.put(`/users/${profileId}/follow`, {userId: user._id});
+            await axios.put(`https://dev-socia1.herokuapp.com/api/users/${profileId}/follow`, {userId: user._id});
             setFollow(!follow);
             setIsLoadingAction(false);
         } catch (error) {
@@ -101,7 +101,7 @@ const UserProfile = () => {
     const handleUnFollow = async () =>{
         try {
             setIsLoadingAction(true);
-            await axios.put(`/users/${profileId}/unfollow`, {userId: user._id});
+            await axios.put(`https://dev-socia1.herokuapp.com/api/users/${profileId}/unfollow`, {userId: user._id});
             setFollow(!follow);
             setIsLoadingAction(false);
         } catch (error) {

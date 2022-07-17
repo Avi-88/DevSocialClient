@@ -56,8 +56,8 @@ const Profile = () => {
 
   useEffect(()=>{
     const getProfileData = async () =>{
-    const requestOne = await axios.get(`users/${user._id}`);
-    const requestTwo = await axios.get(`posts/myposts/${user._id}`);
+    const requestOne = await axios.get(`https://dev-socia1.herokuapp.com/api/users/${user._id}`);
+    const requestTwo = await axios.get(`https://dev-socia1.herokuapp.com/api/posts/myposts/${user._id}`);
     const requestThree = await axios.get(`users/${user._id}/suggested`);
 
     axios.all([requestOne, requestTwo, requestThree]).then(axios.spread((...responses) => {
@@ -135,7 +135,7 @@ const handleClose = () => {
 const handleProfileUpdate = async ()=>{
     setIsUpdating(true);
         try {
-          const res = await axios.put(`users/${user._id}`, {userId: user._id , username: username?.current?.value, bio: bio?.current?.value, techStack: techStack?.current?.value, profilePic: profilePreview , profilePic_Name: profilePic , profilePic_id:userProfile.profilePic_id });
+          const res = await axios.put(`https://dev-socia1.herokuapp.com/api/users/${user._id}`, {userId: user._id , username: username?.current?.value, bio: bio?.current?.value, techStack: techStack?.current?.value, profilePic: profilePreview , profilePic_Name: profilePic , profilePic_id:userProfile.profilePic_id });
           if(res.status === 200){
             setIsUpdating(false);
             setOpenAlert(true);
@@ -154,7 +154,7 @@ const handleProfileUpdate = async ()=>{
     
 const handleProfileDelete = async ()=>{
         try {
-          const res = await axios.delete(`users/${user._id}`, {userId:user._id});
+          const res = await axios.delete(`https://dev-socia1.herokuapp.com/api/users/${user._id}`, {userId:user._id});
           if(res.status === 200){
              alert('profile deleted');
              navigate('/login'); 

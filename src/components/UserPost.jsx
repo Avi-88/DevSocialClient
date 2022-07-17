@@ -51,7 +51,7 @@ const UserPost = () => {
   useEffect(()=>{
     try {
       const getPostData = async ()=>{
-        const post = await axios.get(`/posts/${postId}`);
+        const post = await axios.get(`https://dev-socia1.herokuapp.com/api/posts/${postId}`);
         if(post.data.author._id === user._id){
           setAdmin(true)
         }
@@ -80,7 +80,7 @@ const UserPost = () => {
 
   const handleComment = async() =>{
     try {
-      await axios.post(`/comments/add/${postId}`,{author: user, content: content });
+      await axios.post(`https://dev-socia1.herokuapp.com/api/comments/add/${postId}`,{author: user, content: content });
       setContent('');
     } catch (error) {
       setOpenAlert(true);
@@ -92,7 +92,7 @@ const UserPost = () => {
 
   const handleLike = async(id) =>{
     try {
-        await axios.put(`/posts/react/${id}`, {userId: user._id});
+        await axios.put(`https://dev-socia1.herokuapp.com/api/posts/react/${id}`, {userId: user._id});
     } catch (error) {
         alert('something went wrong:' + error)
     }
@@ -100,7 +100,7 @@ const UserPost = () => {
   
   const handlePostUpdate = async ()=>{
     try {
-      const res = await axios.put(`/posts/${postId}`, {userId: user._id , caption: caption?.current?.value , techStack: tags?.current?.value});
+      const res = await axios.put(`https://dev-socia1.herokuapp.com/api/posts/${postId}`, {userId: user._id , caption: caption?.current?.value , techStack: tags?.current?.value});
       if(res.status === 200){
         setOpenAlert(true);
         setMsg('Post Updated !');
@@ -117,7 +117,7 @@ const UserPost = () => {
 
   const handlePostDelete = async ()=>{
     try {
-      const res = await axios.delete(`/posts/${postId}`, {userId: user._id, fileId: postData.image_id});
+      const res = await axios.delete(`https://dev-socia1.herokuapp.com/api/posts/${postId}`, {userId: user._id, fileId: postData.image_id});
       if(res.status === 200){
          alert('post deleted');
          navigate('/profile'); 

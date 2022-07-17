@@ -12,7 +12,7 @@ const Explore = () => {
   useEffect(()=>{
     try {
       const getExploreFeed = async ()=>{
-        const res = await axios('posts/explore');
+        const res = await axios('https://dev-socia1.herokuapp.com/api/posts/explore');
         setPostArray(res.data);
         setIsLoading(false);
       }

@@ -49,8 +49,8 @@ const Home = () => {
     
     useEffect(()=>{
         const getHomeData = async () =>{
-        const requestOne = await axios.get(`posts/feedposts/${user._id}`);
-        const requestTwo = await axios.get(`users/${user._id}/suggested`);
+        const requestOne = await axios.get(`https://dev-socia1.herokuapp.com/api/posts/feedposts/${user._id}`);
+        const requestTwo = await axios.get(`https://dev-socia1.herokuapp.com/api/users/${user._id}/suggested`);
     
         await axios.all([requestOne, requestTwo]).then(axios.spread((...responses) => {
             const responseOne = responses[0]
@@ -74,7 +74,7 @@ const Home = () => {
 
     const handleLike = async(id) =>{
         try {
-            await axios.put(`/posts/react/${id}`, {userId: user._id});
+            await axios.put(`https://dev-socia1.herokuapp.com/api/posts/react/${id}`, {userId: user._id});
         } catch (error) {
             alert('something went wrong:' + error)
         }
@@ -82,7 +82,7 @@ const Home = () => {
     
     const handleFollow = async (id, name) =>{
         try {
-            await axios.put(`/users/${id}/follow`, {userId: user._id});
+            await axios.put(`https://dev-socia1.herokuapp.com/api/users/${id}/follow`, {userId: user._id});
             setLike(!like);
             setOpenAlert(true);
             setMsg('You started following '+ name);
@@ -113,7 +113,7 @@ const Home = () => {
     const uploadImage = async () => {
         try {
            setIsUploading(true);
-           const res = await axios.post('posts/add', {author:user._id, caption:caption.current.value ,photo: previewImage, picName: image})
+           const res = await axios.post('https://dev-socia1.herokuapp.com/api/posts/add', {author:user._id, caption:caption.current.value ,photo: previewImage, picName: image})
            if(res.status === 200){
                setOpenAlert(true);
                setMsg('Image Uploaded !');

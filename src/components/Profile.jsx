@@ -58,7 +58,7 @@ const Profile = () => {
     const getProfileData = async () =>{
     const requestOne = await axios.get(`https://dev-socia1.herokuapp.com/api/users/${user._id}`);
     const requestTwo = await axios.get(`https://dev-socia1.herokuapp.com/api/posts/myposts/${user._id}`);
-    const requestThree = await axios.get(`users/${user._id}/suggested`);
+    const requestThree = await axios.get(`https://dev-socia1.herokuapp.com/api/users/${user._id}/suggested`);
 
     axios.all([requestOne, requestTwo, requestThree]).then(axios.spread((...responses) => {
       const responseOne = responses[0]
